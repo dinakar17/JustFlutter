@@ -14,14 +14,16 @@ class TasksScreen extends StatelessWidget {
           child: const Icon(Icons.add),
           onPressed: () {
             showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                builder: (context) => SingleChildScrollView(
-                        child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: const AddTaskScreen(),
-                    )));
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: const AddTaskScreen(),
+                ),
+              ),
+            );
           }),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +47,7 @@ class TasksScreen extends StatelessWidget {
                   height: 10.0,
                 ),
                 const Text(
-                  'Todoey',
+                  'Todo',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 50.0,
@@ -53,6 +55,8 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
+                  // "Provider.of<TaskData>(context).[attributes/methods]" is the syntax to access the state
+                  // With the above syntax we can access all the class attributes and methods defined task_data.dart
                   '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: const TextStyle(
                     color: Colors.white,
@@ -72,6 +76,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
+              // Renders all the items in the List present in task_data.dart
               child: const TasksList(),
             ),
           ),
